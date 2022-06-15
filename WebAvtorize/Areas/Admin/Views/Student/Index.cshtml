@@ -1,0 +1,50 @@
+﻿@using WebAvtorize.Areas.Admin.Models.ModelDTO
+
+@model List<StudentCourse>
+
+<div class="row">
+    <div class="col-md-12">
+        <a asp-action="Create" asp-controller="Student" class="btn btn-success">Добавить</a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table">
+            <thead>
+            <tr>     
+                    <td>Имя</td>
+                    <td>Фамилия</td> 
+                    <td>Возрасть</td>
+                    <td>Дата рождения</td> 
+                    <td>Названия курса</td>
+                           
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    
+                    <td>@item.FirstName</td>
+                    <td>@item.LastName</td> 
+                    <td>@item.Age</td>
+                    <td>@item.Birthday</td> 
+                    <td>@item.CourseName</td> 
+                   
+                   
+                   
+
+                    <td>
+                        <a asp-action="Edit" asp-controller="Student" asp-route-id="@item.Id">
+                            Измениить
+                        </a>
+                        <a asp-action="Delete" asp-controller="Student" asp-route-id="@item.Id">
+                            Удалить
+                        </a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>
