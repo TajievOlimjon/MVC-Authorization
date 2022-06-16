@@ -7,12 +7,11 @@ namespace WebAvtorize.DataDB
 {
     public class DataContext:IdentityDbContext
     {
-        public DataContext(DbContextOptions<DataContext> options) : base(options)
-        {
-            Database.EnsureCreated();
+        public DataContext(DbContextOptions<DataContext> options)
+            : base(options)=>Database.EnsureCreated();
             
                
-        }
+        
 
 
        

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ZYR39ldA5U/upx5zPTZkRLG3l7nAWEfiyMjmqFqFI/M=",
+  "Hash": "kARQRJ9CI4mqxfeuvv66/wt2kwD5qK/7nM3aDDc0acE=",
   "Source": "WebAvtorize",
   "BasePath": "_content/WebAvtorize",
   "Mode": "Default",
@@ -3109,23 +3109,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Image\\images.jpg"
-    },
-    {
-      "Identity": "C:\\Users\\Олим\\source\\repos\\WebAvtorize\\WebAvtorize\\wwwroot\\Image\\Безымянный.png",
-      "SourceId": "WebAvtorize",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Олим\\source\\repos\\WebAvtorize\\WebAvtorize\\wwwroot\\",
-      "BasePath": "_content/WebAvtorize",
-      "RelativePath": "Image/Безымянный.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Image\\Безымянный.png"
     },
     {
       "Identity": "C:\\Users\\Олим\\source\\repos\\WebAvtorize\\WebAvtorize\\wwwroot\\js\\site.js",

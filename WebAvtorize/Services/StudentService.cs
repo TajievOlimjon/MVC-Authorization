@@ -38,6 +38,12 @@ namespace WebAvtorize.Services
             return list;
         }
 
+        public async Task<List<Student>> GetStudentAndCourses()
+        {
+            var list = await context.Students.Include(p=>p.Course).ToListAsync();
+            return list;
+        }
+
         public async Task<StudentDTO> GetStudentById(int Id)
         {
             var list = await (from s in context.Students

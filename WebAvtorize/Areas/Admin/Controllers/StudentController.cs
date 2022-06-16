@@ -24,7 +24,13 @@ namespace WebAvtorize.Areas.Admin.Controllers
             var list = await studentService.GetStudents();
             return View(list);
         }
-       
+         
+         public async Task<IActionResult> GetAll()
+        {
+            var list =await studentService.GetStudentAndCourses();
+            return View(list);
+        }
+
         [HttpGet]        
         public async  Task<IActionResult> Create()
         {
