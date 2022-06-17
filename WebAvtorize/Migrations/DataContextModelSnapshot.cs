@@ -234,6 +234,22 @@ namespace WebAvtorize.Migrations
                     b.ToTable("Courses");
                 });
 
+            modelBuilder.Entity("WebAvtorize.Areas.Admin.Models.Position", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Positions");
+                });
+
             modelBuilder.Entity("WebAvtorize.Areas.Admin.Models.Student", b =>
                 {
                     b.Property<int>("Id")
@@ -262,6 +278,42 @@ namespace WebAvtorize.Migrations
                     b.HasIndex("CourseId");
 
                     b.ToTable("Students");
+                });
+
+            modelBuilder.Entity("WebAvtorize.Areas.Admin.Models.Teacher", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Age")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("text");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("text");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("text");
+
+                    b.Property<int>("PositionId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Salary")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PositionId");
+
+                    b.ToTable("Teachers");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -324,6 +376,17 @@ namespace WebAvtorize.Migrations
                         .IsRequired();
 
                     b.Navigation("Course");
+                });
+
+            modelBuilder.Entity("WebAvtorize.Areas.Admin.Models.Teacher", b =>
+                {
+                    b.HasOne("WebAvtorize.Areas.Admin.Models.Position", "Position")
+                        .WithMany()
+                        .HasForeignKey("PositionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Position");
                 });
 
             modelBuilder.Entity("WebAvtorize.Areas.Admin.Models.Course", b =>

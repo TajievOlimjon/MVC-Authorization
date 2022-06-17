@@ -10,6 +10,7 @@ namespace WebAvtorize.AMapperService
         {
             CreateMap<StudentDTO,Student>();
             CreateMap<CourseDTO, Course>();
+            CreateMap<TeacherDTO,Teacher>();
         }
     }
 }

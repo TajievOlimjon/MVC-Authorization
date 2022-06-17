@@ -6,24 +6,24 @@ using System.Security.Claims;
 using WebAvtorize.Areas.Admin.Models;
 using WebAvtorize.DataDB;
 using WebAvtorize.Models;
+using WebAvtorize.Services;
 
 namespace WebAvtorize.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class AcountController : Controller
     {
-        private readonly UserManager<IdentityUser> _userManager;
+        
         private readonly SignInManager<IdentityUser> _signInManager;
-
-        public AcountController(UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager)
+        private readonly AccountService accountService;       
+        public AcountController(AccountService accountService, SignInManager<IdentityUser> signInManager)
         {
-            _userManager = userManager;
+            this.accountService = accountService;
             _signInManager = signInManager;
         }
 
         [HttpGet]
-        public IActionResult Login(string returnUrl)
+        public async Task<IActionResult> Login(string returnUrl)
         {
             return View(new Login() { ReturnUrl = returnUrl });
         }
@@ -32,28 +32,19 @@ namespace WebAvtorize.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(Login model)
         {
-            var user = await _userManager.FindByNameAsync(model.UserName);
-            if (user != null)
+
+            var account = await accountService.Login(model);
+            if (account == null) return View(model);
+            await  _signInManager.SignInAsync(account, false, null);
+            if (!string.IsNullOrEmpty(model.ReturnUrl))
             {
-                //sign in
-                var result = await _signInManager.PasswordSignInAsync(user, model.Password, false, false);
-                if (result.Succeeded == true)
-                {
-                    if (!string.IsNullOrEmpty(model.ReturnUrl))
-                    {
-                        return Redirect(model.ReturnUrl);
-                    }
-
-                    return RedirectToAction("Index", "Home");
-                }
-
+                return Redirect(model.ReturnUrl);
             }
-            return View(model);
-
+            return View("Index","Home");
         }
 
         [HttpGet]
-        public IActionResult Register()
+        public async Task<IActionResult> Register()
         {
             return View(new Register());
         }
@@ -62,14 +53,10 @@ namespace WebAvtorize.Areas.Admin.Controllers
         public async Task<IActionResult> Register(Register model)
         {
             if (!ModelState.IsValid) return View(model);
+            await   accountService.Register(model);
+            return RedirectToAction("Index", "Student");
 
-            var user = new IdentityUser() { UserName = model.UserName, Email = model.Email };
-            var result = await _userManager.CreateAsync(user, model.Password);
-            if (result.Succeeded==true)
-            {
-                return RedirectToAction("Index", "Student");
-            }
-            return View(model);
+           
         }
 
 

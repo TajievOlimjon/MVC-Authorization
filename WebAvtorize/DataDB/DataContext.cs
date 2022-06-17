@@ -9,12 +9,13 @@ namespace WebAvtorize.DataDB
     {
         public DataContext(DbContextOptions<DataContext> options)
             : base(options)=>Database.EnsureCreated();
-            
-               
-        
 
 
-       
+
+
+
+        public DbSet<Teacher> Teachers { get; set; }
+        public DbSet<Position> Positions { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<Course> Courses { get; set; }
 

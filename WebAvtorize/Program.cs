@@ -18,6 +18,7 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<StudentService>();
 builder.Services.AddScoped<CourseService>();
+builder.Services.AddScoped<AccountService>();
 
 builder.Services.AddAutoMapper(typeof(IMapperService));
 
